@@ -1,0 +1,14 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px; /* Espaciado entre los campos */
+  }
+  
+  .mat-form-field {
+    width: 100%; /* Asegura que todos los campos ocupen el 100% del ancho disponible */
+  }
+  
+  .form-container {
+    padding: 16px; /* Añade un padding general al formulario */
+  }
+  

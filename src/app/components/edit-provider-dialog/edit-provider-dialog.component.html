@@ -1,0 +1,85 @@
+<h2 mat-dialog-title>Edit Provider</h2>
+<mat-dialog-content>
+<form [formGroup]="providerForm" class="form-container">
+  <div class="grid-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Trade Name</mat-label>
+      <input matInput formControlName="tradeName" />
+      <mat-error *ngIf="providerForm.get('tradeName')?.hasError('required')">
+        Trade Name is mandatory
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>TID</mat-label>
+      <input matInput formControlName="tid" />
+      <mat-error *ngIf="providerForm.get('tid')?.hasError('required')">
+        TID is mandatory
+      </mat-error>
+      <mat-error *ngIf="providerForm.get('tid')?.hasError('pattern')">
+        TID must be a valid 11-digit number.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" required />
+        <mat-error *ngIf="providerForm.get('phoneNumber')?.hasError('required')">
+            Phone number is mandatory
+       </mat-error>
+      </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required />
+      <mat-error *ngIf="providerForm.get('email')?.hasError('required')">
+          Email is mandatory
+      </mat-error>
+      <mat-error *ngIf="providerForm.get('email')?.hasError('email')">
+          Be sure to add a valid email address
+     </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Website</mat-label>
+        <input matInput formControlName="website" />
+        <mat-error *ngIf="providerForm.get('website')?.hasError('pattern')">
+            Please input a valid URL (ej. https://www.ey.com/es_pe).
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" />
+        <mat-error *ngIf="providerForm.get('address')?.hasError('required')">
+           Address is mandatory
+          </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="country">
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{ country }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="providerForm.get('country')?.hasError('required')">
+          Country is mandatory.
+        </mat-error>
+      </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Anual Revenue</mat-label>
+        <input matInput type="text" formControlName="anualRevenue" (input)="formatCurrencyValue()" placeholder="0.00">
+        <mat-error *ngIf="providerForm.get('anualRevenue')?.hasError('min')">
+          Value needs to be higher than or equal to 0.
+        </mat-error>
+      </mat-form-field>
+  </div>
+</form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" (click)="onSave()">Update Provider</button>
+</mat-dialog-actions>

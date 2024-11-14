@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Audit Provider</h2>
+<mat-dialog-content>
+  <form>
+    <div class="input-container" style="display: flex; gap: 16px; margin-bottom: 16px;">
+        <mat-form-field appearance="fill">
+            <mat-label>Entity Name</mat-label>
+            <input matInput [(ngModel)]="entityName" name="entityName" readonly>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Database</mat-label>
+            <mat-select [(ngModel)]="databaseName" name="databaseName">
+              <mat-option *ngFor="let db of databases" [value]="db.value">{{ db.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    </form>
+ 
+    <div class="loader-container" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+
+  <div *ngIf="!loading && displayedColumns.length > 0">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <mat-header-cell *matHeaderCellDef> {{ column | titlecase }} </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element[column] }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator 
+        [length]="dataSource.data.length"
+        [pageSize]="5"
+        showFirstLastButtons>
+      </mat-paginator>
+  </div>
+  
+  <ng-template #noResults>
+    <p *ngIf="!loading">No results found</p>
+  </ng-template>
+
+  <div *ngIf="verificationMessage" class="alert alert-danger" style="margin-top: 15px;">
+    {{ verificationMessage }}
+  </div>
+  <div class="button-container" style="display: flex; justify-content: space-between; margin-top: 16px;">
+    <button mat-raised-button color="primary" (click)="search()">Search</button>
+    <button mat-button color="warn" (click)="closeDialog()" >Close</button>
+  </div>
+</mat-dialog-content>
+
+
