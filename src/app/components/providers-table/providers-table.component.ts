@@ -40,7 +40,9 @@ export class ProvidersTableComponent implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   loadProviders() {
-    this.providersService.getProviders().subscribe({
+    const userId = localStorage.getItem('userId');
+    console.log(userId);
+    this.providersService.getProvidersByUserId(userId).subscribe({
       next: (data: Provider[]) => {
         this.dataSource.data = data;
         console.log(data);

@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NavbarComponent } from './shared/ui/navbar/navbar.component';
 import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ProvidersTableComponent } from './components/providers-table/providers-table.component';
 import { EditProviderDialogComponent } from './components/edit-provider-dialog/edit-provider-dialog.component';
 import { CreateProviderDialogComponent } from './components/create-provider-dialog/create-provider-dialog.component';
 import { ProviderScreeningDialogComponent } from './components/provider-screening-dialog/provider-screening-dialog.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
+import { AuthInterceptor } from './util/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { ProviderScreeningDialogComponent } from './components/provider-screenin
     ProvidersTableComponent,
     EditProviderDialogComponent,
     CreateProviderDialogComponent,
-    ProviderScreeningDialogComponent
+    ProviderScreeningDialogComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { ProviderScreeningDialogComponent } from './components/provider-screenin
     HttpClientModule,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]

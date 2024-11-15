@@ -17,6 +17,10 @@ export class ProvidersService {
     getProviderById(id: string){
       return this.http.get(this.providersPath + '/Providers/' + id);
     }
+
+    getProvidersByUserId(id: any){
+      return this.http.get<Provider[]>(this.providersPath + 'Providers/' +id+'/providers');
+    }
     registerProvider(provider : Provider){
       return this.http.post<Provider>(`${this.providersPath}Providers`,provider);
     } 

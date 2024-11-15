@@ -35,7 +35,8 @@ export class CreateProviderDialogComponent {
         website: ['', [Validators.required,Validators.pattern(/https?:\/\/.+/)]], 
         address: ['', Validators.required], 
         country: ['', Validators.required], 
-        anualRevenue: [0, [Validators.required, Validators.min(0)]]
+        anualRevenue: [0, [Validators.required, Validators.min(0)]],
+        UserId: [localStorage.getItem('userId')]
       });
     }
     onSave(): void {

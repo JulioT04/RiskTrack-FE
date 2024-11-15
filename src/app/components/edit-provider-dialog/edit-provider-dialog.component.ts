@@ -33,6 +33,7 @@ export class EditProviderDialogComponent {
         this.data?.anualRevenue ? formatCurrency(this.data.anualRevenue, this.locale, '$', 'USD', '1.2-2') : '',
         [Validators.required, Validators.min(0)],
       ],
+      UserId: [localStorage.getItem('userId')]
     });
    }
 

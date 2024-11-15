@@ -14,14 +14,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
     declarations: [],
     imports: [MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatIconModule,MatSortModule,
               MatPaginatorModule,BrowserAnimationsModule, MatDialogModule, FormsModule, MatSelectModule, MatOptionModule,
-              MatProgressSpinnerModule,ReactiveFormsModule, MatSnackBarModule],
+              MatProgressSpinnerModule,ReactiveFormsModule, MatSnackBarModule, MatCardModule, MatMenuModule],
     exports: [MatTableModule, MatFormFieldModule,MatInputModule, MatButtonModule, MatToolbarModule,MatIconModule,MatSortModule,
               MatPaginatorModule,BrowserAnimationsModule, MatDialogModule, FormsModule, MatSelectModule, MatOptionModule,
-              MatProgressSpinnerModule,ReactiveFormsModule, MatSnackBarModule],
+              MatProgressSpinnerModule,ReactiveFormsModule, MatSnackBarModule, MatCardModule, MatMenuModule],
     providers: [],
     bootstrap: []
 })
